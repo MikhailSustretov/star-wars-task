@@ -13,6 +13,9 @@ use App\Services\PersonService;
 
 class PersonController
 {
+    /**
+     * @var PersonService
+     */
     public PersonService $service;
 
     public function __construct(PersonService $service)
@@ -20,6 +23,9 @@ class PersonController
         $this->service = $service;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         extract($this->service->index());
@@ -30,6 +36,9 @@ class PersonController
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function create()
     {
         extract($this->service->create());
@@ -41,6 +50,10 @@ class PersonController
         ])->with('success', 'Your person has been successfully added');
     }
 
+    /**
+     * @param PersonStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\never
+     */
     public function store(PersonStoreRequest $request)
     {
         $data = $request->validated();
@@ -52,6 +65,10 @@ class PersonController
             : abort(404, $store_result);
     }
 
+    /**
+     * @param Person $person
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function edit(Person $person)
     {
         extract($this->service->edit($person));
@@ -63,6 +80,11 @@ class PersonController
         ]);
     }
 
+    /**
+     * @param Person $person
+     * @param PersonUpdateRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\never
+     */
     public function update(Person $person, PersonUpdateRequest $request)
     {
         $updated_data = $request->validated();
@@ -74,12 +96,21 @@ class PersonController
             : abort(404, $update_result);
     }
 
+    /**
+     * @param Person $person
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Person $person)
     {
         $this->service->destroy($person);
         return back();
     }
 
+    /**
+     * @param Person $person
+     * @param PersonUpdateImagesRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\never
+     */
     public function updateImages(Person $person, PersonUpdateImagesRequest $request)
     {
         $data = $request->validated();

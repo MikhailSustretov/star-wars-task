@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HomeworldShowRequest;
-use App\Models\Homeworld;
 use App\Services\HomeworldService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class HomeworldController
 {
@@ -18,13 +20,19 @@ class HomeworldController
         $this->service = $service;
     }
 
-
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         return view('homeworld.index',
             ["homeworlds" => $this->service->index()]);
     }
 
+    /**
+     * @param HomeworldShowRequest $request
+     * @return Application|Factory|View
+     */
     public function show(HomeworldShowRequest $request)
     {
         $homeworld = $request->validated();

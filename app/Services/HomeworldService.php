@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Person;
 use App\Repositories\HomeworldRepository;
 use App\Repositories\PersonRepository;
 
@@ -21,16 +20,21 @@ class HomeworldService
         $this->personRepository = $personRepository;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function index()
     {
         return $this->homeworldRepository->all();
     }
 
+    /**
+     * @param $homeworld
+     * @return array
+     */
     public function show($homeworld)
     {
-        $people = Person::with('films')->with('images')->where($homeworld)
-            ->paginate(10);
+        $people = $this->personRepository->with(['films', 'images'])->where($homeworld)->paginate(10);
 
         $homeworld_data = $this->homeworldRepository->find($homeworld['homeworld_id']);
 
