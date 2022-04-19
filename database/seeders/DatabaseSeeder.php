@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         Gender::factory()->create(['gender' => 'female']);
         Gender::factory()->create(['gender' => 'n/a']);
 
-        $swapi_url = 'https://swapi.dev/api/people';
+        $swapi_url = config('constants.swapi_url');
+
         $gender_default_id = Gender::where('gender', 'n/a')->first()->id;
 
         while ($swapi_url !== null) {
