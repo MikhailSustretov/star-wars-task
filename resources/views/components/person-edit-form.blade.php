@@ -20,7 +20,7 @@
             @foreach($genders as $gender)
                 <option
                     value="{{old('gender_id',$gender->id)}}" {{$person->gender_id==$gender->id?'selected':''}}>
-                    {{$gender->gender}}
+                    {{$gender->name}}
                 </option>
             @endforeach
         </x-form.select>

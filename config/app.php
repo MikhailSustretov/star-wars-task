@@ -163,8 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Prettus\Repository\Providers\RepositoryServiceProvider::class,
-
+        Nwidart\Modules\LaravelModulesServiceProvider::class,
         /*
          * Package Services Providers...
          */
@@ -192,7 +191,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        'Module' => Nwidart\Modules\Facades\Module::class,
     ])->toArray(),
 
 ];

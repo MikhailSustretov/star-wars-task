@@ -1,0 +1,18 @@
+{
+    "name": "Person",
+    "alias": "person",
+    "description": "",
+    "keywords": [],
+    "priority": 4,
+    "providers": [
+        "Modules\\Person\\Providers\\PersonServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "order": 3,
+    "minimumCoreVersion": "",
+    "title": "",
+    "version":"",
+    "author": ""
+}

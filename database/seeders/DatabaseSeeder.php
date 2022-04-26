@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Film;
-use App\Models\Gender;
-use App\Models\Homeworld;
-use App\Models\Person;
 use Illuminate\Database\Seeder;
+use Modules\Film\Database\Seeders\FilmDatabaseSeeder;
+use Modules\Gender\Database\Seeders\GenderDatabaseSeeder;
+use Modules\Homeworld\Database\Seeders\HomeworldDatabaseSeeder;
+use Modules\Person\Database\Seeders\PersonDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,49 +17,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Gender::factory()->create(['gender' => 'male']);
-        Gender::factory()->create(['gender' => 'female']);
-        Gender::factory()->create(['gender' => 'n/a']);
+        $HomeworldSeeder = new HomeworldDatabaseSeeder();
+        $GenderSeeder = new GenderDatabaseSeeder();
+        $PersonSeeder = new PersonDatabaseSeeder();
+        $FilmSeeder = new FilmDatabaseSeeder();
 
         $swapi_url = config('constants.swapi_url');
 
-        $gender_default_id = Gender::where('gender', 'n/a')->first()->id;
-
         while ($swapi_url !== null) {
-            $swapi_inf = $this->getSwapiInf($swapi_url);
 
+            $swapi_inf = $this->getSwapiInf($swapi_url);
             $persons = $swapi_inf->results;
 
             foreach ($persons as $person) {
 
                 $homeworld = $this->getSwapiInf($person->homeworld);
-                $homeworld_id = Homeworld::firstOrCreate(['name' => $homeworld->name]);
+                $homeworld_id = $HomeworldSeeder->run($homeworld->name);
 
-                $gender_object = Gender::where('gender', $person->gender)->first();
+                $gender_id = $GenderSeeder->run($person->gender);
 
-                $gender_id = $gender_object == null ? $gender_default_id : $gender_object->id;
-
-                $mass = $this->numbers_validate($person->mass);
-                $height = $this->numbers_validate($person->height);
-
-                $person_id = Person::factory()->create([
-                    'name' => $person->name,
-                    'height' => $height,
-                    'mass' => $mass,
-                    'hair_color' => $person->hair_color,
-                    'birth_year' => $person->birth_year,
-                    'gender_id' => $gender_id,
-                    'homeworld_id' => $homeworld_id,
-                    'created' => mb_substr($person->created, 0, 10),
-                    'url' => $person->url
-                ]);
+                $person_data = $this->collectPersonData($person, $gender_id, $homeworld_id);
+                $addedPerson = $PersonSeeder->run($person_data);
 
                 foreach ($person->films as $film) {
+
                     $film_object = $this->getSwapiInf($film);
 
-                    $film_id = Film::firstOrCreate(['title' => $film_object->title]);
+                    $film_id = $FilmSeeder->run($film_object->title);
 
-                    $person_id->films()->attach($film_id);
+                    $addedPerson->films()->attach($film_id);
                 }
             }
 
@@ -67,6 +53,10 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     private function getSwapiInf($url)
     {
         $arrContextOptions = array(
@@ -80,11 +70,40 @@ class DatabaseSeeder extends Seeder
             false, stream_context_create($arrContextOptions)));
     }
 
+    /**
+     * @param $mass
+     * @return int|null
+     */
     private function numbers_validate($mass)
     {
         $mass = str_replace(',', '', $mass);
 
         return is_numeric($mass) ? (int)$mass : null;
+    }
+
+    /**
+     * @param $person
+     * @param $gender_id
+     * @param $homeworld_id
+     *
+     * @return array
+     */
+    private function collectPersonData($person, $gender_id, $homeworld_id): array
+    {
+        $mass = $this->numbers_validate($person->mass);
+        $height = $this->numbers_validate($person->height);
+
+        return [
+            'name' => $person->name,
+            'height' => $height,
+            'mass' => $mass,
+            'hair_color' => $person->hair_color,
+            'birth_year' => $person->birth_year,
+            'gender_id' => $gender_id,
+            'homeworld_id' => $homeworld_id,
+            'created' => mb_substr($person->created, 0, 10),
+            'url' => $person->url
+        ];
     }
 
 

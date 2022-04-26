@@ -1,0 +1,17 @@
+{
+    "name": "Homeworld",
+    "alias": "homeworld",
+    "description": "",
+    "keywords": [],
+    "priority": 2,
+    "providers": [
+        "Modules\\Homeworld\\Providers\\HomeworldServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "minimumCoreVersion": "",
+    "title": "",
+    "version":"",
+    "author": ""
+}

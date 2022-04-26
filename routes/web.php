@@ -13,22 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PersonController@index')->name('people.index');
+Route::get('/', 'PersonController@index');
 
-Route::get('/people/create', 'PersonController@create')->name('people.create');
+Route::get('/people/create', 'PersonController@create');
 
-Route::post('/store', 'PersonController@store')->name('people.store');
+Route::post('/store', 'PersonController@store');
 
-Route::get('/people/{person}/edit', 'PersonController@edit')->name('people.edit');
+Route::get('/people/{person}/edit', 'PersonController@edit');
 
-Route::patch('/people/{person}', 'PersonController@update')->name('people.update');
+Route::patch('/people/{person}', 'PersonController@update');
 
-Route::delete('/people/{person}', 'PersonController@destroy')->name('people.destroy');
+Route::delete('/people/{person}', 'PersonController@destroy');
 
-Route::get('/homeworlds', 'HomeworldController@index')->name('homeworlds.index');
+Route::get('/homeworlds', 'HomeworldController@index');
 
-Route::post('/homeworlds', 'HomeworldController@show')->name('homeworlds.show');
+Route::post('/homeworlds', 'HomeworldController@show');
 
-Route::delete('/images/{image}', 'ImageController@destroy')->name('images.destroy');
+Route::delete('/images/{image}', 'ImageController@destroy');
 
-Route::patch('/person-images/{person}', 'PersonController@updateImages')->name('people.images.update');
+Route::patch('/person-images/{person}', 'PersonController@updateImages');
