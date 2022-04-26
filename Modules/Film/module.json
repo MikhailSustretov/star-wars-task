@@ -1,0 +1,17 @@
+{
+    "name": "Film",
+    "alias": "film",
+    "description": "",
+    "keywords": [],
+    "priority": 3,
+    "providers": [
+        "Modules\\Film\\Providers\\FilmServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "minimumCoreVersion": "",
+    "title": "",
+    "version":"",
+    "author": ""
+}

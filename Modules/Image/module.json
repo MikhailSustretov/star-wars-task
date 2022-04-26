@@ -1,0 +1,17 @@
+{
+    "name": "Image",
+    "alias": "image",
+    "description": "",
+    "keywords": [],
+    "priority": 5,
+    "providers": [
+        "Modules\\Image\\Providers\\ImageServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "minimumCoreVersion": "",
+    "title": "",
+    "version":"",
+    "author": ""
+}

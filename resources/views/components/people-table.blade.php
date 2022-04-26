@@ -1,5 +1,4 @@
 <div class="mt-3 d-flex justify-content-center">
-{{--    {{dd($people)}}--}}
     {{$people->withQueryString()->links()}}
 </div>
 

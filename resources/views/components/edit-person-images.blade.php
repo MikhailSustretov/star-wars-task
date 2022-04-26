@@ -15,26 +15,26 @@
                         </form>
                     </div>
                 @endforeach
-        @endif
+            @endif
 
-        <div class="row justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center">
 
-            <form method="POST" action="{{route('people.images.update', ['person'=>$person])}}" id="person-form"
-                  enctype="multipart/form-data"
-                    >
-                @csrf
-                @method('patch')
+                <form method="POST" action="{{route('images.create', ['person'=>$person->id])}}" id="person-form"
+                      enctype="multipart/form-data"
+                >
+                    @csrf
+                    @method('post')
 
-                <div class="container col-md-9 mb-3 mt-3">
-                    <h3 class="mb-3 mt-3">Select the images you want to add</h3>
-                    <x-form.input type="file" label_name="" multiple name="image[]"></x-form.input>
-                    <x-form.error name="image"></x-form.error>
-                    <x-form.error name="image.*"></x-form.error>
+                    <div class="container col-md-9 mb-3 mt-3">
+                        <h3 class="mb-3 mt-3">Select the images you want to add</h3>
+                        <x-form.input type="file" label_name="" multiple name="image[]"></x-form.input>
+                        <x-form.error name="image"></x-form.error>
+                        <x-form.error name="image.*"></x-form.error>
 
-                    <button type="submit" class="btn btn-primary mb-3 w-100">Add images</button>
-                </div>
-            </form>
+                        <button type="submit" class="btn btn-primary mb-3 w-100">Add images</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 </div>

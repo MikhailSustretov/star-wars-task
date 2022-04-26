@@ -1,0 +1,17 @@
+{
+    "name": "Gender",
+    "alias": "gender",
+    "description": "",
+    "keywords": [],
+    "priority": 1,
+    "providers": [
+        "Modules\\Gender\\Providers\\GenderServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "minimumCoreVersion": "",
+    "title": "",
+    "version":"",
+    "author": ""
+}
