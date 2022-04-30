@@ -11,10 +11,16 @@ use Modules\Image\Repositories\ImageRepository;
 use Modules\Person\Entities\Person;
 use Modules\Person\Repositories\PersonRepository;
 
+/**
+ * This is a class with business logic for working on the Person entity
+ */
 class PersonService
 {
 
     /**
+     * Saves the new person and his movies in the appropriate tables.
+     * Adds images of a person to storage and their names to a table
+     *
      * @param array $data
      * @return string
      */
@@ -24,6 +30,7 @@ class PersonService
             Db::beginTransaction();
 
             $films = $data['films'];
+
             $images = $data['image'];
             unset($data['films'], $data['image']);
 
@@ -32,7 +39,7 @@ class PersonService
 
             $this->storeImages($images, $newPerson->id);
 
-            $newPerson->films()->attach($films);
+            $newPerson->films()->sync($films);
 
             Db::commit();
 
@@ -45,6 +52,8 @@ class PersonService
     }
 
     /**
+     * Adds images to storage
+     *
      * @param $images
      * @param $personId
      * @return void
@@ -56,11 +65,13 @@ class PersonService
 
             $imagePath = $image->store('person_images');
 
-            $imageRepository->createImage(['title' => $imagePath, 'person_id' => $personId]);
+            $imageRepository->storeImage(['title' => $imagePath, 'person_id' => $personId]);
         }
     }
 
     /**
+     * Retrieve information from movies, genders, homeworlds, and people for the person editing page.
+     *
      * @param $personId
      * @return array
      */
@@ -75,6 +86,8 @@ class PersonService
     }
 
     /**
+     * Updates the given person and his movies' data in the appropriate tables.
+     *
      * @param Person $person
      * @param array $personData
      * @return string
@@ -88,7 +101,7 @@ class PersonService
             unset($personData['films']);
 
             $updated_person = (new PersonRepository)->updatePerson($personData, $person->id);
-            $person->films()->attach($films);
+            $person->films()->sync($films);
 
             Db::commit();
 

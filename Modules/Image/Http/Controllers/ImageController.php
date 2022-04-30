@@ -12,6 +12,9 @@ use Modules\Image\Http\Requests\ImageStoreRequest;
 use Modules\Image\Repositories\ImageRepository;
 use Modules\Image\Services\ImageService;
 
+/**
+ * This is controller for CRUD work with Image entity
+ */
 class ImageController extends Controller
 {
     /**
@@ -34,6 +37,7 @@ class ImageController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param ImageStoreRequest $imageStoreRequest
      * @param ImageService $imageService
      * @return RedirectResponse

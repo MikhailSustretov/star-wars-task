@@ -19,7 +19,7 @@
 
             <div class="row justify-content-center align-items-center">
 
-                <form method="POST" action="{{route('images.create', ['person'=>$person->id])}}" id="person-form"
+                <form method="POST" action="{{route('images.store', ['person'=>$person->id])}}" id="person-form"
                       enctype="multipart/form-data"
                 >
                     @csrf

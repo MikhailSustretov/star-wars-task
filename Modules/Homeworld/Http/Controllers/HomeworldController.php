@@ -9,6 +9,9 @@ use Modules\Homeworld\Http\Requests\HomeworldShowRequest;
 use Modules\Homeworld\Repositories\HomeworldRepository;
 use Modules\Homeworld\Service\HomeworldService;
 
+/**
+ * This is controller for CRUD work with Homeworld entity
+ */
 class HomeworldController extends Controller
 {
     /**

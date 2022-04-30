@@ -5,6 +5,9 @@ namespace Modules\Homeworld\Repositories;
 use Modules\BaseModulesObjects\CoreRepository;
 use Modules\Homeworld\Entities\Homeworld as Model;
 
+/**
+ * This is a repository with special queries on the Homeworlds table
+ */
 class HomeworldRepository extends CoreRepository
 {
 
@@ -18,6 +21,8 @@ class HomeworldRepository extends CoreRepository
     }
 
     /**
+     * Get all homeworlds names
+     *
      * @return mixed
      */
     public function getHomeworldsNames(): mixed
@@ -26,6 +31,8 @@ class HomeworldRepository extends CoreRepository
     }
 
     /**
+     * Get homeworld name by its id
+     *
      * @param int $homeworldId
      * @return mixed
      */

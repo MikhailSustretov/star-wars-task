@@ -14,10 +14,14 @@ use Modules\Person\Http\Requests\PersonUpdateRequest;
 use Modules\Person\Repositories\PersonRepository;
 use Modules\Person\Services\PersonService;
 
+/**
+ * This is controller for CRUD work with Person entity
+ */
 class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @param PersonRepository $personRepository
      * @return Renderable
      */
@@ -35,6 +39,7 @@ class PersonController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @param GenderRepository $genderRepository
      * @param FilmRepository $filmRepository
      * @param HomeworldRepository $homeworldRepository
@@ -43,19 +48,16 @@ class PersonController extends Controller
     public function create(GenderRepository    $genderRepository, FilmRepository $filmRepository,
                            HomeworldRepository $homeworldRepository): Renderable
     {
-        $genderNames = $genderRepository->getGenderNames();
-        $filmNames = $filmRepository->getFilmTitles();
-        $homeworldNames = $homeworldRepository->getHomeworldsNames();
+        $genders = $genderRepository->getGenderNames();
+        $films = $filmRepository->getFilmTitles();
+        $homeworlds = $homeworldRepository->getHomeworldsNames();
 
-        return view('person::create', [
-            'homeworlds' => $homeworldNames,
-            'films' => $filmNames,
-            'genders' => $genderNames
-        ]);
+        return view('person::create', compact('genders', 'films', 'homeworlds'));
     }
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param PersonStoreRequest $request
      * @param PersonService $personService
      * @return RedirectResponse
@@ -70,17 +72,8 @@ class PersonController extends Controller
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('person::show');
-    }
-
-    /**
      * Show the form for editing the specified resource.
+     *
      * @param $personId
      * @param PersonService $personService
      * @return Renderable
@@ -94,6 +87,7 @@ class PersonController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      * @param Person $person
      * @param PersonUpdateRequest $request
      * @param PersonService $personService
@@ -110,6 +104,7 @@ class PersonController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param int $id
      * @param PersonRepository $personRepository
      * @return RedirectResponse

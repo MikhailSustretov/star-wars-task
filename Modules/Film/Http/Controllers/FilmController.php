@@ -6,6 +6,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+/**
+ * This is controller for CRUD work with Film entity
+ */
 class FilmController extends Controller
 {
     /**

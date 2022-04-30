@@ -11,16 +11,9 @@ class PersonDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @param array $person_data
-     * @return Person
      */
-    public function run(array $person_data): Person
+    public function run()
     {
         Model::unguard();
-
-        $person = Person::factory()->create($person_data);
-
-        return $person;
     }
 }

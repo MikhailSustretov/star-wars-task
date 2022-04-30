@@ -19,7 +19,7 @@
         <x-form.select name="gender_id">
             @foreach($genders as $gender)
                 <option
-                    value="{{old('gender_id',$gender->id)}}" {{$person->gender_id==$gender->id?'selected':''}}>
+                        value="{{old('gender_id',$gender->id)}}" {{$person->gender_id==$gender->id?'selected':''}}>
                     {{$gender->name}}
                 </option>
             @endforeach
@@ -29,7 +29,7 @@
         <x-form.select name="homeworld_id">
             @foreach($homeworlds as $homeworld)
                 <option
-                    value="{{old('homeworld_id',$homeworld->id)}}" {{$person->homeworld_id==$homeworld->id?'selected':''}}>
+                        value="{{old('homeworld_id',$homeworld->id)}}" {{$person->homeworld_id==$homeworld->id?'selected':''}}>
                     {{$homeworld->name}}</option>
             @endforeach
         </x-form.select>
@@ -42,7 +42,7 @@
 
                 @foreach($person->films as $personFilm)
                     {{$personFilm->id==$film->id?'selected':''}}
-                    @endforeach
+                        @endforeach
 
                 >{{$film->title}}</option>
             @endforeach

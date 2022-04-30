@@ -7,10 +7,15 @@ use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
 use Modules\Image\Repositories\ImageRepository;
 
+/**
+ * This is a class with business logic for working on the Image entity
+ */
 class ImageService
 {
 
     /**
+     * Image's soft delete
+     *
      * @param int $imageId
      * @return mixed
      */
@@ -20,7 +25,7 @@ class ImageService
             Db::beginTransaction();
 
             $imageRepository = new ImageRepository();
-            $image = $imageRepository->findImageEntity($imageId);
+            $image = $imageRepository->getImageEntity($imageId);
 
             Storage::delete($image->title);
 
@@ -35,6 +40,8 @@ class ImageService
     }
 
     /**
+     *Adds an image to the storage and its name to the table Images
+     *
      * @param array $images
      * @param int $person
      */
@@ -47,7 +54,7 @@ class ImageService
 
                 $imagePath = $image->store('person_images');
 
-                $imageRepository->createImage(['title' => $imagePath, 'person_id' => $person]);
+                $imageRepository->storeImage(['title' => $imagePath, 'person_id' => $person]);
             }
             Db::commit();
 

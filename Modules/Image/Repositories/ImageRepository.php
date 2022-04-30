@@ -5,6 +5,9 @@ namespace Modules\Image\Repositories;
 use Modules\BaseModulesObjects\CoreRepository;
 use Modules\Image\Entities\Image as Model;
 
+/**
+ * This is a repository with special queries on the Images table
+ */
 class ImageRepository extends CoreRepository
 {
 
@@ -18,15 +21,19 @@ class ImageRepository extends CoreRepository
     }
 
     /**
+     * Stores image to table
+     *
      * @param array $array
      * @return mixed
      */
-    public function createImage(array $array): mixed
+    public function storeImage(array $array): mixed
     {
       return $this->startConditions()->create($array);
     }
 
     /**
+     * Deletes image from table
+     *
      * @param int $id
      * @return mixed
      */
@@ -36,10 +43,12 @@ class ImageRepository extends CoreRepository
     }
 
     /**
+     * Get images data from table
+     *
      * @param int $imageId
      * @return mixed
      */
-    public function findImageEntity(int $imageId): mixed
+    public function getImageEntity(int $imageId): mixed
     {
         return $this->startConditions()->find($imageId);
     }

@@ -46,39 +46,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
-    <script src="{{asset('js/validation.js')}}"></script>
-    <script>
-        $(function () {
-            $("#created").datepicker({dateFormat: 'yy-mm-dd'})
-                .on('change', function (ev) {
-                    $(this).valid();
-                });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('.image-form').submit(function (e) {
-                e.preventDefault();
-
-                let img = $(this).find('.img-thumbnail');
-                let button = $(this).find('.btn-danger');
-
-                $.ajax({
-                    url: '/images/' + img.attr('alt'),
-                    type: 'delete',
-                    dataType: 'json',
-                    success: function () {
-                        img.remove();
-                        button.remove();
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-                    }
-                })
-            })
-        });
-
-    </script>
+    <script src="{{url('js/validation.js')}}"></script>
+    <script src="{{url('js/datepicker.js')}}"></script>
+    <script src="{{url('js/deleting_image.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script>

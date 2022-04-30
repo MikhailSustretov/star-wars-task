@@ -5,6 +5,9 @@ namespace Modules\Person\Repositories;
 use Modules\BaseModulesObjects\CoreRepository;
 use Modules\Person\Entities\Person as Model;
 
+/**
+ * This is a repository with special queries on the People table
+ */
 class PersonRepository extends CoreRepository
 {
 
@@ -18,16 +21,22 @@ class PersonRepository extends CoreRepository
     }
 
     /**
+     * Get data for a person's index page
+     *
      * @return mixed
      */
     public function getIndexData(): mixed
     {
         $paginatedNumber = config('constants.paginated_people_number');
 
-        return $this->startConditions()->with(['films', 'images'])->paginate($paginatedNumber);
+        return $this->startConditions()
+            ->with(['films:id,title', 'images:id,title,person_id', 'homeworld:id,name', 'gender:id,name'])
+            ->paginate($paginatedNumber);
     }
 
     /**
+     * Get data for a person's create page
+     *
      * @param array $data
      * @return mixed
      */
@@ -37,15 +46,19 @@ class PersonRepository extends CoreRepository
     }
 
     /**
+     * Get data for a person's edit page
+     *
      * @param $personId
      * @return mixed
      */
     public function getEditPersonPage($personId): mixed
     {
-        return $this->startConditions()->with(['films', 'images'])->find($personId);
+        return $this->startConditions()->with(['films:id,title', 'images:id,title,person_id'])->find($personId);
     }
 
     /**
+     * Update person data in storage
+     *
      * @param array $personData
      * @param int $person
      * @return mixed
@@ -56,6 +69,8 @@ class PersonRepository extends CoreRepository
     }
 
     /**
+     * Delete person data from storage
+     *
      * @param int $personId
      * @return mixed
      */
@@ -65,6 +80,8 @@ class PersonRepository extends CoreRepository
     }
 
     /**
+     * Get data about people with the given homeworld_id
+     *
      * @param array $homeworldId
      * @return mixed
      */
@@ -72,6 +89,9 @@ class PersonRepository extends CoreRepository
     {
         $paginatedNumber = config('constants.paginated_people_number');
 
-        return $this->startConditions()->where($homeworldId)->with(['films', 'images'])->paginate($paginatedNumber);
+        return $this->startConditions()
+            ->where($homeworldId)
+            ->with(['films:id,title', 'images:id,title,person_id', 'homeworld:id,name', 'gender:id,name'])
+            ->paginate($paginatedNumber);
     }
 }

@@ -5,10 +5,15 @@ namespace Modules\Homeworld\Service;
 use Modules\Homeworld\Repositories\HomeworldRepository;
 use Modules\Person\Repositories\PersonRepository;
 
+/**
+ * This is a class with business logic for working on the Homeworld entity
+ */
 class HomeworldService
 {
 
     /**
+     * Gets all data for homeworld.show view
+     *
      * @param int $homeworldId
      * @return array
      */

@@ -7,15 +7,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Film\Entities\Film;
 use Modules\Gender\Entities\Gender;
 use Modules\Homeworld\Entities\Homeworld;
 use Modules\Image\Entities\Image;
 use Modules\Person\Database\factories\PersonFactory;
 
+/**
+ * Model for working with People table
+ */
 class Person extends Model
 {
+
     use HasFactory;
+
+    use SoftDeletes;
 
     /**
      * @var array
@@ -39,7 +46,7 @@ class Person extends Model
     /**
      * @return BelongsToMany
      */
-    public function films()
+    public function films(): BelongsToMany
     {
         return $this->belongsToMany(Film::class);
     }
@@ -47,7 +54,7 @@ class Person extends Model
     /**
      * @return HasMany
      */
-    public function images()
+    public function images(): HasMany
     {
         return $this->hasMany(Image::class);
     }
@@ -55,7 +62,7 @@ class Person extends Model
     /**
      * @return BelongsTo
      */
-    public function gender()
+    public function gender(): BelongsTo
     {
         return $this->belongsTo(Gender::class);
     }
@@ -63,7 +70,7 @@ class Person extends Model
     /**
      * @return BelongsTo
      */
-    public function homeworld()
+    public function homeworld(): BelongsTo
     {
         return $this->belongsTo(Homeworld::class);
     }

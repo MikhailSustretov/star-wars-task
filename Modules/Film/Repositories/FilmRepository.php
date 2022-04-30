@@ -5,6 +5,9 @@ namespace Modules\Film\Repositories;
 use Modules\BaseModulesObjects\CoreRepository;
 use Modules\Film\Entities\Film as Model;
 
+/**
+ * This is a repository with special queries on the Films table
+ */
 class FilmRepository extends CoreRepository
 {
     /**
@@ -16,7 +19,11 @@ class FilmRepository extends CoreRepository
         return Model::class;
     }
 
-    public function getFilmTitles()
+    /**
+     * Get all films titles
+     * @return mixed
+     */
+    public function getFilmTitles(): mixed
     {
         return $this->startConditions()->all('id', 'title');
     }

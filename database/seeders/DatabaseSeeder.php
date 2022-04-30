@@ -54,10 +54,12 @@ class DatabaseSeeder extends Seeder
     }
 
     /**
-     * @param $url
+     * Get info from swapi.dev by url
+     *
+     * @param $url - swapi.dev url address
      * @return mixed
      */
-    private function getSwapiInf($url)
+    private function getSwapiInf($url): mixed
     {
         $arrContextOptions = array(
             "ssl" => array(
@@ -82,6 +84,8 @@ class DatabaseSeeder extends Seeder
     }
 
     /**
+     * Gathers a person's data into one array to add to the people table
+     *
      * @param $person
      * @param $gender_id
      * @param $homeworld_id

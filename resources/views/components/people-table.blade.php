@@ -16,7 +16,8 @@
 
             <td class="table-light col-3">
                 @if($person->images->count())
-                    @component('components.carousel', ['items' => $person->images]) @endcomponent
+                    @component('components.carousel', ['items' => $person->images, 'carousel_id'=>$person->name])
+                    @endcomponent
                 @else
                     <b>Person hasn't images yet</b>
                 @endif
@@ -30,7 +31,7 @@
 
             <td class="table-light">{{$person->birth_year}}</td>
 
-            <td class="table-light">{{$person->gender->gender}}</td>
+            <td class="table-light">{{$person->gender->name}}</td>
 
             <td class="table-light">{{$person->homeworld->name}}</td>
 
