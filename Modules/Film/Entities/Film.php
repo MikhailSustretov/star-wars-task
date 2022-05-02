@@ -9,9 +9,9 @@ class Film extends Model
 {
     use HasFactory;
 
-    protected array $fillable = ['title'];
+    protected $fillable = ['title'];
 
-    protected string $table='films';
+    protected $table='films';
 
     protected static function newFactory()
     {

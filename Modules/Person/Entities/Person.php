@@ -27,13 +27,13 @@ class Person extends Model
     /**
      * @var array
      */
-    protected array $fillable = ['name', 'height', 'mass', 'hair_color', 'birth_year',
+    protected $fillable = ['name', 'height', 'mass', 'hair_color', 'birth_year',
         'gender_id', 'homeworld_id', 'created', 'url'];
 
     /**
      * @var string
      */
-    protected string $table = 'People';
+    protected $table = 'People';
 
     /**
      * @return PersonFactory

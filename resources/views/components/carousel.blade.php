@@ -7,7 +7,7 @@
                 @else
                     "carousel-item">
                 @endif
-                <img src="/storage/{{$item->title}}"
+                <img src="{{url('storage/'.$item->title}}"
                      class="d-block w-100" alt="person_image">
             </div>
         @endforeach
