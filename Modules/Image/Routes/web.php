@@ -13,8 +13,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('images')->group(function() {
-    Route::delete('/{image}', 'ImageController@destroy')->name('images.destroy');
-
-    Route::post('/', 'ImageController@store')->name('images.create');
-});
+Route::resource('images', 'ImageController')->only('store', 'destroy')->names('images');

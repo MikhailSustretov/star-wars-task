@@ -8,58 +8,22 @@
 
 - PHP 8.1.0
 - MySql 8.0.28
-- Composer ???
+- Composer 2.2.6
 - Laravel Framework 9.5.1
-
+---
 #### Getting Started:
 
 - Copy the repository to your local machine.
-- Create database.
-- From the file .env.example, make an .env file with changed values of DB_DATABASE, DB_USERNAME, DB_PASSWORD to the name
-  of your database, login and password of your mysql.
-- run npm install
-- php artisan key:generate
-- In the terminal, run the command "php artisan migrate --seed".
+- Create mysql database.
+- From the file **.env.example**, make an **.env file** with changed values of **DB_DATABASE**, **DB_USERNAME**, **
+  DB_PASSWORD** to the name of your database, login and password of your mysql.
+- Run ```npm install``` in terminal for installing all packages.
+- Run ```php artisan key:generate``` in terminal to generate your app key.
+- Run ```php artisan module:migrate``` in terminal to create tables and ```php artisan db:seed``` to seed them.
+---
+#### Project architecture:
 
-# 1 lvl header
-
-## 2 lvl header
-
-### 3 lvl header
-
-#### 4 lvl header
-
-___
-
-**bold** __bold__
-
-*cursive* _cursive_
-
-~~text~~
-
-`text line with code`
-
-```php
-big code block
-```
-
-* 1 paragraph
-
-- 2 paragraph
-
-+ 3 paragraph
-    + 3 subparagraph
-
-1. first numbered item
-2. second numbered item
-3. third numbered item
-    1. third numbered subitem.
-    2. third numbered subitem.
-    3. third numbered subitem.
-
-https://github.com/MikhailSustretov
-
-[my github](https://github.com/MikhailSustretov)
-
-![image-example](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gull_portrait_ca_usa.jpg/450px-Gull_portrait_ca_usa.jpg)
-
+- The project was implemented using the standard architecture of the **MVC**. 
+- For easier orientation in its structure, the [nwidart/laravel-modules](https://github.com/nWidart/laravel-modules) package is used.
+- Implemented a **Repository** pattern to separate the logic of accessing the database from the controller.
+- The project contains **Services** to separate the business logic of the request from the controller.

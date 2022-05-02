@@ -25,11 +25,9 @@ class ImageService
             Db::beginTransaction();
 
             $imageRepository = new ImageRepository();
-            $image = $imageRepository->getImageEntity($imageId);
-
-            Storage::delete($image->title);
 
             $deletedImage = $imageRepository->deleteImage($imageId);
+
             Db::commit();
 
         } catch (Exception $exception) {

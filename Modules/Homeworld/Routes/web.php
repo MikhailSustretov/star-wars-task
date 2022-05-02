@@ -18,5 +18,4 @@ Route::prefix('homeworlds')->group(function () {
     Route::get('/', 'HomeworldController@index')->name('homeworlds.index');
 
     Route::post('/', 'HomeworldController@show')->name('homeworlds.show');
-
 });

@@ -13,16 +13,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('people')->group(function() {
-    Route::get('/', 'PersonController@index')->name('people.index');
+Route::get('/', 'PersonController@index')->name('people.index');
 
-    Route::get('/create', 'PersonController@create')->name('people.create');
-
-    Route::post('/', 'PersonController@store')->name('people.store');
-
-    Route::get('/{person}/edit', 'PersonController@edit')->name('people.edit');
-
-    Route::patch('/{person}', 'PersonController@update')->name('people.update');
-
-    Route::delete('/{person}', 'PersonController@destroy')->name('people.destroy');
-});
+Route::resource('people', 'PersonController')->except('index', 'show')->names('people');
