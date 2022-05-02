@@ -12,8 +12,12 @@ class PersonDatabaseSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run($person_data)
     {
         Model::unguard();
+
+        $person = Person::firstOrCreate($person_data);
+
+        return $person;
     }
 }
