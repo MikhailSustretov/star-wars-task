@@ -16,7 +16,7 @@
 
             <td class="table-light col-3">
                 @if($person->images->count())
-                    @component('components.carousel', ['items' => $person->images, 'carousel_id'=>$person->name])
+                    @component('components.carousel', ['items' => $person->images, 'carousel_id'=>$person->id])
                     @endcomponent
                 @else
                     <b>Person hasn't images yet</b>

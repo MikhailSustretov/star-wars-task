@@ -16,10 +16,10 @@ class Image extends Model
     /**
      * @var array|string[]
      */
-    protected $fillable = ['title', 'person_id'];
+    protected array $fillable = ['title', 'person_id'];
 
     /**
      * @var string
      */
-    protected $table='images';
+    protected string $table='images';
 }

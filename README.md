@@ -17,6 +17,7 @@
 - Create mysql database.
 - From the file **.env.example**, make an **.env file** with changed values of **DB_DATABASE**, **DB_USERNAME**, **DB_PASSWORD** to the name of your database, login and password of your mysql.
 - Run ```npm install``` in terminal for installing all packages.
+- Run ```php artisan storage:link``` to create link on storage directory.
 - Run ```php artisan key:generate``` in terminal to generate your app key.
 - Run ```php artisan module:migrate``` in terminal to create tables and ```php artisan db:seed``` to seed them.
 ---

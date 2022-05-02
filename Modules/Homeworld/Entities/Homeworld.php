@@ -13,12 +13,12 @@ class Homeworld extends Model
     /**
      * @var array|string[]
      */
-    protected $fillable = ['name'];
+    protected array $fillable = ['name'];
 
     /**
      * @var string
      */
-    protected $table = 'homeworlds';
+    protected string $table = 'homeworlds';
 
     /**
      * @return HomeworldFactory

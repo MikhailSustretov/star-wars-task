@@ -7,7 +7,7 @@
                 @foreach($images as $image)
                     <div class="col col-2" id="{{$image->id}}">
                         <form class="image-form">
-                            <img src="{{url('storage/'.$image->title}}"
+                            <img src="{{url('storage/'.$image->title)}}"
                                  class="img-thumbnail" alt="{{$image->id}}">
                             <button id="button-delete" type="submit" class="btn-danger mt-3 mb-3">
                                 Delete image

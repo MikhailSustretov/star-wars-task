@@ -24,16 +24,10 @@ class Person extends Model
 
     use SoftDeletes;
 
-    /**
-     * @var array
-     */
-    protected $fillable = ['name', 'height', 'mass', 'hair_color', 'birth_year',
+    protected array $fillable = ['name', 'height', 'mass', 'hair_color', 'birth_year',
         'gender_id', 'homeworld_id', 'created', 'url'];
 
-    /**
-     * @var string
-     */
-    protected $table = 'People';
+    protected string $table = 'People';
 
     /**
      * @return PersonFactory

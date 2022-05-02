@@ -14,12 +14,12 @@ class Gender extends Model
     /**
      * @var array|string[]
      */
-    protected $fillable = ['name'];
+    protected array $fillable = ['name'];
 
     /**
      * @var string
      */
-    protected $table='genders';
+    protected string $table='genders';
 
     /**
      * @return GenderFactory
