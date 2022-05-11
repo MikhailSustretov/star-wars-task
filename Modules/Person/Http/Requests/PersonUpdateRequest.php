@@ -15,7 +15,7 @@ class PersonUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:people',
+            'name' => 'required',
             'height' => 'required|numeric',
             'mass' => 'required|numeric',
             'hair_color' => 'required',
