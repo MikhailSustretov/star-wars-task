@@ -72,11 +72,31 @@ class DatabaseSeeder extends Seeder
             false, stream_context_create($arrContextOptions)));
     }
 
+    private function getSwapiInfByValeriia($url): mixed
+    {
+        $arrContextOptions = array(
+            "ssl" => array(
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ),
+        );
+
+        return json_decode(file_get_contents($url,
+            false, stream_context_create($arrContextOptions)));
+    }
+
     /**
      * @param $mass
      * @return int|null
      */
     private function numbers_validate($mass)
+    {
+        $mass = str_replace(',', '', $mass);
+
+        return is_numeric($mass) ? (int)$mass : null;
+    }
+
+    private function numbers_validateByValeriia($mass)
     {
         $mass = str_replace(',', '', $mass);
 
