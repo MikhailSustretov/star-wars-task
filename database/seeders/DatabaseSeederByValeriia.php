@@ -8,7 +8,7 @@ use Modules\Gender\Database\Seeders\GenderDatabaseSeeder;
 use Modules\Homeworld\Database\Seeders\HomeworldDatabaseSeeder;
 use Modules\Person\Database\Seeders\PersonDatabaseSeeder;
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeederByValeriia extends Seeder
 {
     /**
      * Seed the application's database.
